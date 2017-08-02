@@ -11,30 +11,36 @@
 * You can contact us at info@kreporter.org
 ******************************************************************************* */
 $manifest = array(
-    'acceptable_sugar_flavors' => array(
-        'CE',
+    'acceptable_sugar_versions' => array (
+	'regex_matches' => array (
+	    0 => "5\.*\.*",
+    	    1 => "6\.*\.*"
+	),
+    ),
+    'acceptable_sugar_flavors' =>
+     array(
+  	'CE',
         'CORP',
         'PRO',
         'ENT'
-    ),
-    'acceptable_sugar_versions' => array(
-        '6.*.*',
-        '7.*.*'
-    ),
-    'is_uninstallable' => true,
-    'remove_tables' => 'prompt',
-    'name' => 'SQL Fiddle',
+     ),
+    'readme'=>'README.txt',
+    'key'=>'sqlfiddle',
     'author' => 'Sohan U. S. Tirpude',
     'description' => 'SQL Fiddle for SugarCRM',
-    'published_date' => '2017/08/01',
-    'version' => 'v1.0',
-    'type' => 'module'
+    'icon' => '',
+    'is_uninstallable' => true,
+    'name' => 'SQL Fiddle',
+    'published_date' => '2017-08-01 00:00:01',
+    'type' => 'module',
+    'version' => '1.0.0',
+    'remove_tables' => 'prompt',
 );
 
 $installdefs = array(
     'id' => 'SQLFiddle',
-    //'image_dir' => '<basepath>/images',
     'beans' => array(
+        0 =>
         array(
             'module' => 'SQLFiddle',
             'class' => 'SQLFiddle',
@@ -42,17 +48,36 @@ $installdefs = array(
             'tab' => true,
         )
     ),
+    'administration' => array (
+        0 => 
+        array (
+            'from' => '<basepath>/administration/SQLFiddleAdmin.menu.php',
+        ),
+    ),
     'language' => array(
+        0 =>
         array(
             'from' => '<basepath>/language/en_us.SQLFiddle.php',
-            'to_module' => 'application',
-            'language' => 'en_us'
-        )
+            'to_module'=> 'Administration',
+	        'language'=>'en_us'
+        ),
+        1 =>
+        array(
+            'from' => '<basepath>/SugarModules/language/application/en_us.lang.php',
+            'to_module'=> 'application',
+            'language'=>'en_us'
+        ),
     ),
     'copy' => array(
+        0 =>
         array(
-            'from' => '<basepath>/modules/SQLFiddle',
+            'from' => '<basepath>/SugarModules/modules/SQLFiddle',
             'to' => 'modules/SQLFiddle',
-        )
+        ),
+	1 =>
+	array(
+	    'from' => '<basepath>/SugarModules/SQLFiddle',
+	    'to' => 'custom/include/SQLFiddle',
+	),
     )
 );
