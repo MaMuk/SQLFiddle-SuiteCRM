@@ -1,31 +1,39 @@
 <?php
+    
+    if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+    $GLOBALS['log']->fatal("POST DATA: " .print_r($_POST, true));
+
+    if($_POST["data"])
+    {
+        global $db;
+
+        $sql = $_POST["data"];
+
+        $execute = $db->query($sql);
+        $final = array();
+
+        while($row = $db->fetchByAssoc($execute)) {          
+            array_push($final, $row);
+        }
+
+        print_r(json_encode($final));
+    }
 
     function set_db_tree() {
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "1234";
-        $dbname = "sugarcrm";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
+        global $db;
 
         $post_data = array('id' => $dbname,'text' => $dbname, 'children' => array());
         
-        //echo "Connected successfully";
 
         $sql = "SHOW tables";
-        $result = $conn->query($sql);
+        $result = $db->query($sql);
 
-        if ($result->num_rows > 0) {
+        if ($db->getRowCount($result) > 0) {
             // output data of each row
             $i = 0;
-            while($row = $result->fetch_assoc()) {
+            while($row = $db->fetchByAssoc($result)) {
                 
                 array_push($post_data['children'], array("id" => $row['Tables_in_sugarcrm'], "text" => $row['Tables_in_sugarcrm'], "children" => array()));
                
@@ -47,6 +55,5 @@
         fwrite($myfile, json_encode($post_data));
         fclose($myfile);
 
-        $conn->close();
     }
 ?>

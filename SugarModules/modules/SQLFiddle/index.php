@@ -55,10 +55,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['code'])) {
         </div>
         <div class="col-sm-9 rightpane">
         	<div style="height: 65%">
-	        <form id="preview-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+	        <form>
 	            <textarea class="codemirror-textarea" id="code" name="code"><?php echo $comment; ?></textarea>
 	            <br>
-	            <input type="submit" class="btn btn-default" name="preview-form-submit" id="preview-form-submit" value="Submit">
+	            <input type="button" class="btn btn-default" name="preview-form-submit" id="preview-form-submit" value="Submit">
 	        </form>
 	        </div>
         <div id="preview-comment"><?php echo $comment; ?></div>
@@ -78,5 +78,51 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['code'])) {
                 }
             }
         });
+
+        $(document).ready(function(){
+    	    $("#preview-form-submit").click(function(){
+                $.post("index.php?entryPoint=GetDbDetails", //Required URL of the page on server
+                { // Data Sending With Request To Server
+                    data:window.editor.getValue()
+                },
+                function(response,status){ // Required Callback Function
+                    
+                    var JSONobj = $.parseJSON(response);
+
+                    var divStructure = "<table><tbody><thead><tr>"
+
+                    var tableHeaders = Object.keys(JSONobj[0]);
+
+                    var i=0;
+
+                    while (tableHeaders.length>i) {
+                        //console.log(tableHeaders[i]);
+                        divStructure += "<th>" + tableHeaders[i] + "</th>";
+                        i++;
+                    }
+
+                    divStructure += "</tr></thead><tbody>";
+                    
+                    console.log(divStructure);
+
+                    for (var key in JSONobj) {
+                        if (JSONobj.hasOwnProperty(key)) {
+                            var val = JSONobj[key];
+                            divStructure += "<tr>";
+                            for (var subkey in val) {
+                                //console.log(subkey + " : " + val[subkey]);
+                                divStructure += "<td>" + val[subkey] + "</td>";
+                            }
+                            divStructure += "</tr>";
+                        }
+                    }
+                    divStructure += "</tbody></table>";
+
+                    console.log(divStructure);
+
+                    $("#preview-comment").html(divStructure);
+                });
+	        });
+	    });
     </script>
 </html>
