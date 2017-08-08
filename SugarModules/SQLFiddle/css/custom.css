@@ -28,12 +28,13 @@ body, html {
   border-collapse: collapse;
 }
 #db_tree {
-    position: absolute;
+    position: relative;
     top: 0;
     bottom: 0;
     margin: 0 0;
     width: 100%;
-    max-width: 98%;
+    max-width: 98%;    
+    max-height: 70vh;
     overflow: auto;
     font: 10px Verdana, sans-serif;
     box-shadow: 0 0 5px #ccc;
@@ -42,14 +43,38 @@ body, html {
 }
 .CodeMirror {
     box-shadow: 0 0 5px #ccc;			    
-border-radius: 7px;
-    height: 50vh;
+    border-radius: 7px;
+    height: 30vh;
 }
 #preview-comment {
-	max-width: 100%;
+    max-width: 100%;
     overflow: auto;
     font: 10px Verdana, sans-serif;
     box-shadow: 0 0 5px #ccc;
     padding: 10px;
     border-radius: 7px;
-    height: 35%;
+    height: 35vh;
+    margin-top: 1%;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #534d64;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+tr:nth-child(odd) {
+    background-color:#fff;
+}

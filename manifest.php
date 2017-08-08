@@ -24,17 +24,17 @@ $manifest = array(
         'PRO',
         'ENT'
      ),
-    'readme'=>'README.txt',
+    'readme'=>'README.md',
     'key'=>'sqlfiddle',
     'author' => 'Sohan U. S. Tirpude',
-    'description' => 'SQL Fiddle for SugarCRM',
+    'description' => 'SQL Fiddle for CRM',
     'icon' => '',
     'is_uninstallable' => true,
     'name' => 'SQL Fiddle',
-    'published_date' => '2017-08-01 00:00:01',
+    'published_date' => '2017-08-08 00:00:01',
     'type' => 'module',
     'version' => '1.0.0',
-    'remove_tables' => 'prompt',
+    'remove_tables' => '',
 );
 
 $installdefs = array(
@@ -59,7 +59,7 @@ $installdefs = array(
         array(
             'from' => '<basepath>/language/en_us.SQLFiddle.php',
             'to_module'=> 'Administration',
-	        'language'=>'en_us'
+	    'language'=>'en_us'
         ),
         1 =>
         array(
@@ -79,5 +79,11 @@ $installdefs = array(
 	    'from' => '<basepath>/SugarModules/SQLFiddle',
 	    'to' => 'custom/include/SQLFiddle',
 	),
-    )
+    ),
+    'entrypoints' => array (
+        array (
+            'from' => '<basepath>/SugarModules/EntryPointRegistry/SQLFiddleEntryPoint_registry.php',
+            'to_module' => 'application',
+        ),
+    ),
 );

@@ -1,6 +1,0 @@
-<?PHP
-$mod_strings['LBL_SQL_FIDDLE_ADMIN'] = 'Teams';
-$mod_strings['LBL_SQL_FIDDLE_ADMIN_DESCRIPTION'] = 'Manage user team memberships';
-$mod_strings['LBL_SQL_FIDDLE_ADMIN_TITLE'] = 'Teams';
-$mod_strings['SQL_FIDDLE_ADMIN_TITLE'] = 'Teams';
-$mod_strings['SQL_FIDDLE_ADMIN_DESC'] = 'Create and manage teams.';
