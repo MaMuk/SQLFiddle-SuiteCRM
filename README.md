@@ -5,6 +5,7 @@ SQL Fiddle is a plugin for SugarCRM/SuiteCRM
 
 This module provides SQL Editor functionality in SugarCRM/SuiteCRM.
 It connects to CRM database using database credentials mentioned in config file of CRM.
+In the left side of window, you can see the details about the database, its tables and their corresponding columns.
 Only admin users can query into database.
 
 After installation you will find an extra item **SQL Fiddle** in the admin panel where you can query into database.
