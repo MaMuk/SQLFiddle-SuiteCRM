@@ -9,19 +9,39 @@ It connects to CRM database using database credentials mentioned in config file 
 In the left side of window, you can see the details about the database, its tables and their corresponding columns.
 Only admin users can query into database.
 
+#### Installing the Add-on
+
+The ONLY step
+
+Install plug-in using Module Loader, Admin > Module Loader.
+
+![Install SQL Fiddle](https://raw.githubusercontent.com/changezkhan/crm/master/module_installer.png)
+
+#### Usage
+
+After installation, you'll get to see the link on **admin** section under *Developer Tools*.
+
+![Link to SQL Fiddle](https://raw.githubusercontent.com/changezkhan/crm/master/admin_section.png)
+
+After selecting SQL Fiddle, you'll get to see the following window
+
 ![SQL Fiddle](https://raw.githubusercontent.com/changezkhan/crm/master/sql_editor_screenshot.png)
 
+And, that's it.
 
-Known limitations:
+##### Known limitations:
+
 1) Compatibility with databases other than MySQL has not been tested.
 2) Not tested with complex queries.
 
-TODO:
+##### TODO:
+
 1) Remove *Delete* access.
 2) Add icon.
 3) Needs to handle scenarios, where results from query not returned.
 4) Needs to Clean-up junk HTML, CSS, JS and PHP code.
 
-By:
+###### By:
   Sohan U. S. Tirpude
+  
   mynameischangezkhan@gmail.com
