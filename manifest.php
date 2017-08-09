@@ -13,8 +13,9 @@
 $manifest = array(
     'acceptable_sugar_versions' => array (
 	'regex_matches' => array (
-	    0 => "5\.*\.*",
-    	    1 => "6\.*\.*"
+    	   0 => "6\\.5\\.*",
+	   1 => "6\\.6\\.*",
+	   2 => "6\\.7\\.*",
 	),
     ),
     'acceptable_sugar_flavors' =>
@@ -24,6 +25,7 @@ $manifest = array(
         'PRO',
         'ENT'
      ),
+    'latest_supported_version' => '6.5.24',
     'readme'=>'README.md',
     'key'=>'sqlfiddle',
     'author' => 'Sohan U. S. Tirpude',
