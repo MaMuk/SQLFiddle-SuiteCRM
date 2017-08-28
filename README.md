@@ -9,6 +9,8 @@ It connects to CRM database using database credentials mentioned in config file 
 In the left side of window, you can see the details about the database, its tables and their corresponding columns.
 Only admin users can query into database.
 
+#### Demo
+
 ![Demo](https://raw.githubusercontent.com/changezkhan/crm/master/out1.gif)
 
 #### Installing the Add-on
