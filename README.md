@@ -1,5 +1,5 @@
 # SQLFiddle
-### Beta Version 0.1
+### Version 2.0
 
 SQL Fiddle is a plugin for SuiteCRM
 
