@@ -66,9 +66,12 @@ $sugar_smarty->assign("EDITOR", $editor);
 $jstree = "<script>                                                                        
            $('#db_tree').jstree({
                 'core' : {
-                    'data' : {                                                                                              'url' : 'text.json',
-                       'dataType' : 'json'                                                  
-                    }                                                                                                }                                                                                               });
+		    'data' : {                                                                                              
+		        'url' : 'text.json',
+                        'dataType' : 'json'                                                  
+		    }
+		}
+           });
            </script>";
 
 $sugar_smarty->assign("JSTREE", $jstree);
@@ -76,42 +79,57 @@ $sugar_smarty->assign("JSTREE", $jstree);
 $show_table = "<script>
                 $(document).ready(function(){
                     $('#preview-form-submit').click(function(){
-                         $.post('index.php?entryPoint=GetDbDetails',
-                         {
-                             data:window.editor.getValue()
-                         },
-                         function(response,status){ // Required Callback Function
-                                                                        
-                         var JSONobj = $.parseJSON(response);
+                        $.post('index.php?entryPoint=GetDbDetails',
+                        {
+                            data:window.editor.getValue()
+                        },
+			function(response,status){ // Required Callback Function
+ 			    var JSONobj = $.parseJSON(response);
+                    	    $("#preview-comment").html('');
+                            if(JSONobj['error']) {
+                                $("#preview-comment").html("<p>"+JSONobj['error']+"</p>");
+                    	    } else {
+                        	if(JSONobj['affected_count']) {
+                                    var text = '';
+                            	    if(JSONobj['affected_count'] > '1') {
+                                        text = 's';
+                                    }
+                                    divStructure = "<p>Total "+ JSONobj['affected_count']+" record"+text+" affected.</p><br>";
+                        	} else {
+                            	    var divStructure = '';
+                            	    if(JSONobj['count'].length != '') {
+                            	        divStructure = "<p>Total "+ JSONobj['count']+" records returned.</p><br>";
+                            	    }
+                            	    divStructure += "<table><tbody><thead><tr>"
+                            	    var result = JSONobj['result'];
+                                    var tableHeaders = Object.keys(result[0]);
 
-                         var divStructure = '<table><tbody><thead><tr>';
+                            	    var i=0;
 
-                         var tableHeaders = Object.keys(JSONobj[0]);
+                            	    while (tableHeaders.length>i) {
+                                	divStructure += "<th>" + tableHeaders[i] + "</th>";
+                                	i++;
+                            	    }
 
-                         var i=0;
-
-                         while (tableHeaders.length>i) {
-                             divStructure += '<th>' + tableHeaders[i] + '</th>';
-                             i++;
-                         }
-
-                         divStructure += '</tr></thead><tbody>';
-                                                                                                                              for (var key in JSONobj) {
-                             if (JSONobj.hasOwnProperty(key)) {
-                                 var val = JSONobj[key];
-                                 divStructure += '<tr>';
-                                 for (var subkey in val) {
-                                     divStructure += '<td>' + val[subkey] + '</td>';
-                                 }
-                                 divStructure += '</tr>';
-                             }
-                         }
-                         divStructure += '</tbody></table>';
-                        
-                         $('#preview-comment').html(divStructure);
-                      });
-                  });
-              });
+	                            divStructure += "</tr></thead><tbody>";
+                            
+           	                    for (var key in result) {
+                                	if (result.hasOwnProperty(key)) {
+                                    	    var val = result[key];
+                                    	    divStructure += "<tr>";
+                                    	    for (var subkey in val) {
+                                        	divStructure += "<td>" + val[subkey] + "</td>";
+                                    	    }
+                                    	    divStructure += "</tr>";
+                                	}
+                            	    }
+                            	    divStructure += "</tbody></table>";
+                        	}
+                        	$("#preview-comment").html(divStructure);
+                   	    }			    
+			});
+                    });
+                });
 </script>";
 
 $sugar_smarty->assign('DATATABLE', $show_table);

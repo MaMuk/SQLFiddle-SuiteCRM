@@ -2,33 +2,49 @@
     
     if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
+    ini_set("error_reporting", 0);
+
     if(isset($_POST['data']) && !empty($_POST["data"]))
     {
         global $db;
 
-        $sql = $_POST["data"];
+        $sql = mb_convert_encoding($_POST["data"], "UTF-8", "HTML-ENTITIES");
 
         $execute = $db->query($sql);
-        $final = array();
 
-        while($row = $db->fetchByAssoc($execute)) {
-            //$GLOBALS['log']->fatal("Result: " .print_r($row, true));            
-            array_push($final, $row);
+	$error = $db->lastDbError();
+	$result = array();
+
+        if($error) {
+            $result['error'] = $error;
+        } else {
+            $final = array();
+            $row_count = $db->getRowCount($execute);
+            if($row_count) {
+                while($row = $db->fetchByAssoc($execute)) {
+                    array_push($final, $row);
+                }
+
+                $result['count'] = $row_count;
+                if(count($final) > 0) {
+                    $result['result'] = $final;            
+                }
+            } else {
+                $affected_row_count = $db->getAffectedRowCount($execute);
+                $result['affected_count'] = $affected_row_count;
+            }
         }
-
-        print_r(json_encode($final));
+        print_r(json_encode($result));
     }
 
     function set_db_tree() {
 
-	    global $db, $sugar_config;
+	global $db, $sugar_config;
 
         $dbname = $sugar_config['dbconfig']['db_name'];
 
         $post_data = array('id' => $dbname,'text' => $dbname, 'children' => array());
         
-        //echo "Connected successfully";
-
         $sql = "SHOW tables";
         $result = $db->query($sql);
 
@@ -38,7 +54,6 @@
             while($row = $db->fetchByAssoc($result)) {
                 
                 array_push($post_data['children'], array("id" => $row['Tables_in_' .$dbname], "text" => $row['Tables_in_' .$dbname], "children" => array()));
-               
                 
                 $sql1 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '".$dbname."' AND TABLE_NAME = '".$row['Tables_in_' .$dbname]."'";
                 $result1 = $db->query($sql1);

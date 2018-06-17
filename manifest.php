@@ -35,7 +35,7 @@ $manifest = array(
     'name' => 'SQL Fiddle',
     'published_date' => '2017-08-08 00:00:01',
     'type' => 'module',
-    'version' => '1.0.0',
+    'version' => '2.0.0',
     'remove_tables' => '',
 );
 
