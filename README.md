@@ -11,7 +11,7 @@ Only admin users can query into database.
 
 #### Demo
 
-![Demo](https://raw.githubusercontent.com/changezkhan/crm/master/out1.gif)
+![Demo](https://raw.githubusercontent.com/changezkhan/crm/master/v2.gif)
 
 #### Installing the Add-on
 
