@@ -40,12 +40,10 @@ And, that's it.
 
 ##### TODO:
 
-1) Remove *Delete* access.
-2) Add icon.
-3) Needs to handle scenarios, where results from query not returned.
-4) Needs to Clean-up junk HTML, CSS, JS and PHP code.
+1) Add icon.
+2) Needs to Clean-up junk HTML, CSS, JS and PHP code.
 
 ###### By:
-  Sohan U. S. Tirpude
+  Sohan T.
   
   mynameischangezkhan@gmail.com
