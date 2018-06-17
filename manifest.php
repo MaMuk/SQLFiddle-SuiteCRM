@@ -28,14 +28,14 @@ $manifest = array(
     'latest_supported_version' => '6.5.24',
     'readme'=>'README.md',
     'key'=>'sqlfiddle',
-    'author' => 'Sohan U. S. Tirpude',
+    'author' => 'Sohan T.',
     'description' => 'SQL Fiddle for CRM',
     'icon' => '',
     'is_uninstallable' => true,
     'name' => 'SQL Fiddle',
-    'published_date' => '2017-08-08 00:00:01',
+    'published_date' => '2018-06-17 10:45:00',
     'type' => 'module',
-    'version' => '2.0.0',
+    'version' => '2.0',
     'remove_tables' => '',
 );
 
@@ -71,15 +71,15 @@ $installdefs = array(
         ),
     ),
     'copy' => array(
-        0 =>
+    	0 =>
         array(
             'from' => '<basepath>/SugarModules/modules/SQLFiddle',
-            'to' => 'modules/SQLFiddle',
+            'to' => 'modules/SQLFiddle'
         ),
-	1 =>
+        1 =>
 	array(
 	    'from' => '<basepath>/SugarModules/SQLFiddle',
-	    'to' => 'custom/include/SQLFiddle',
+	    'to' => 'custom/include/SQLFiddle'
 	),
     ),
     'entrypoints' => array (

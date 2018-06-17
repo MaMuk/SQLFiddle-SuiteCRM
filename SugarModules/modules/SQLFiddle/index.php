@@ -89,7 +89,7 @@ $show_table = "<script>
                             if(JSONobj['error']) {
                                 $('#preview-comment').html('<p>'+JSONobj['error']+'</p>');
                     	    } else {
-                        	if(JSONobj['affected_count']) {
+                        	if(JSONobj['affected_count'] || JSONobj['affected_count'] == '0') {
                                     var text = '';
                             	    if(JSONobj['affected_count'] > '1') {
                                         text = 's';
