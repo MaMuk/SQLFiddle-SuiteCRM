@@ -65,12 +65,12 @@ $sugar_smarty->assign("EDITOR", $editor);
 
 $jstree = "<script>                                                                        
            $('#db_tree').jstree({
-                'core' : {
+           	'core' : {
 		    'data' : {                                                                                              
 		        'url' : 'text.json',
                         'dataType' : 'json'                                                  
 		    }
-		}
+ 		}
            });
            </script>";
 
@@ -85,47 +85,47 @@ $show_table = "<script>
                         },
 			function(response,status){ // Required Callback Function
  			    var JSONobj = $.parseJSON(response);
-                    	    $("#preview-comment").html('');
+                    	    $('#preview-comment').html('');
                             if(JSONobj['error']) {
-                                $("#preview-comment").html("<p>"+JSONobj['error']+"</p>");
+                                $('#preview-comment').html('<p>'+JSONobj['error']+'</p>');
                     	    } else {
                         	if(JSONobj['affected_count']) {
                                     var text = '';
                             	    if(JSONobj['affected_count'] > '1') {
                                         text = 's';
                                     }
-                                    divStructure = "<p>Total "+ JSONobj['affected_count']+" record"+text+" affected.</p><br>";
+                                    divStructure = '<p>Total '+ JSONobj['affected_count']+' record'+text+' affected.</p><br>';
                         	} else {
                             	    var divStructure = '';
                             	    if(JSONobj['count'].length != '') {
-                            	        divStructure = "<p>Total "+ JSONobj['count']+" records returned.</p><br>";
+                            	        divStructure = '<p>Total '+ JSONobj['count']+' records returned.</p><br>';
                             	    }
-                            	    divStructure += "<table><tbody><thead><tr>"
+                            	    divStructure += '<table><tbody><thead><tr>'
                             	    var result = JSONobj['result'];
                                     var tableHeaders = Object.keys(result[0]);
 
                             	    var i=0;
 
                             	    while (tableHeaders.length>i) {
-                                	divStructure += "<th>" + tableHeaders[i] + "</th>";
+                                	divStructure += '<th>' + tableHeaders[i] + '</th>';
                                 	i++;
                             	    }
 
-	                            divStructure += "</tr></thead><tbody>";
+	                            divStructure += '</tr></thead><tbody>';
                             
            	                    for (var key in result) {
                                 	if (result.hasOwnProperty(key)) {
                                     	    var val = result[key];
-                                    	    divStructure += "<tr>";
+                                    	    divStructure += '<tr>';
                                     	    for (var subkey in val) {
-                                        	divStructure += "<td>" + val[subkey] + "</td>";
+                                        	divStructure += '<td>' + val[subkey] + '</td>';
                                     	    }
-                                    	    divStructure += "</tr>";
+                                    	    divStructure += '</tr>';
                                 	}
                             	    }
-                            	    divStructure += "</tbody></table>";
+                            	    divStructure += '</tbody></table>';
                         	}
-                        	$("#preview-comment").html(divStructure);
+                        	$('#preview-comment').html(divStructure);
                    	    }			    
 			});
                     });
