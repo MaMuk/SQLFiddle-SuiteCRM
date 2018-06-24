@@ -1,5 +1,5 @@
 # SQLFiddle
-### Version 2.0
+### Version 3.0
 
 SQL Fiddle is a plugin for SuiteCRM
 
@@ -35,13 +35,14 @@ And, that's it.
 
 ##### Known limitations:
 
-1) Compatibility with databases other than MySQL has not been tested.
+1) Currently compatible with only MySQL database.
 2) Not tested with complex queries.
 
 ##### TODO:
 
 1) Add icon.
 2) Needs to Clean-up junk HTML, CSS, JS and PHP code.
+3) Add support for other SuiteCRM supported database also.
 
 ###### By:
   Sohan T.
